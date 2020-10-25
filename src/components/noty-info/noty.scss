@@ -1,0 +1,59 @@
+ 
+	.noty_layout {
+		position: fixed;
+		top: 2vh ;
+		right: 20%;
+		padding: 0;
+	}
+
+	.noty_bar {
+		width: auto;
+		position: relative;
+		padding: 15px;
+		margin-bottom: 8px;
+		line-height: 1.3125;
+		border-radius: 4px;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.13);
+	}
+
+	.noty_body {
+		display: flex;
+		justify-content: center;
+		white-space: nowrap;
+		width: fit-content;
+	}
+
+	.noty_effects_open {
+		animation: noty_anim_in 1s;
+		animation-fill-mode: forwards;
+	}
+	.noty_effects_close {
+		animation: noty_anim_out 1s;
+		animation-fill-mode: forwards;
+	}
+	
+	.noty_type__info {
+		color: #ffffff;
+		background-color: #17a2b8;
+	}
+
+
+@keyframes noty_anim_out {
+	from  {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes noty_anim_in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
