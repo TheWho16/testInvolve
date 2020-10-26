@@ -1,5 +1,25 @@
 .d-flex {
-    display       : flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -ms-flex-direction: column;
     flex-direction: column;
-    width         : 316px;
+    width: 316px;
+    text-align: initial;
+    margin: 0 auto;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+.select{
+    margin-bottom: 32px;
 }

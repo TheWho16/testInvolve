@@ -1,0 +1,12 @@
+.details {
+    padding-top: 6%;
+}
+
+.details h1 {
+    margin-bottom: 36px;
+}
+
+.details-p {
+    display        : flex;
+    justify-content: space-between;
+}

@@ -15,12 +15,13 @@ const InputChange = (props) => {
     const onChange = (e) => {
         const onChangeData = {
             value: e.value,
-            name: e.label,
+            title: e.label
         };
         props.select(onChangeData);
+        props.setNoty(false)
     };
 
-    console.log(props.inputValue)
+
     const options = props.data.map(i => {
         return (
             {
@@ -34,15 +35,17 @@ const InputChange = (props) => {
         <form className="bottom-panel d-flex" >
             <AppHeader text={props.header} />
             <Select
+                className="select"
                 options={options}
                 onChange={e => onChange(e, options)}
             />
             <input
                 type="number"
-                className="form-control new-todo-label"
+                className="form-control"
                 value={props.value}
-                onChange={props.onChangeInput}
-                placeholder="Задачи пишем сюда"
+                onChange={e => props.onChange(e)}
+                placeholder={props.placeholder}
+                disabled={props.noty}
             />
         </form>
     );

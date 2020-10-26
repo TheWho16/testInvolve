@@ -17,7 +17,6 @@ export default class InvolveServise {
   }
 
   getCanculate = async (data) => {
-
     const res = await fetch(`${this._baseUrl}/payMethods/calculate?` + new URLSearchParams({
       base: data.base,
       amount: data.amount,

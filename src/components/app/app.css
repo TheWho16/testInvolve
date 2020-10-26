@@ -1,24 +1,27 @@
 body {
-  position: relative;
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
+  position               : relative;
+  margin                 : 0;
+  -webkit-font-smoothing : antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(90deg, rgba(45, 176, 224, 1) 0%, rgba(96, 40, 168, 1) 100%);
-}
-.wrapper {
-  margin-top: 20.6%;
-  padding-top: 4%;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-  justify-content: center;
-  text-align: center;
-  background: rgb(179, 245, 240);
-  -webkit-box-shadow: 0 0 10px 5px #2cc9bc;
-  box-shadow: 0 0 10px 5px #2cc9bc;
-  min-height: 450px;
+  background             : linear-gradient(90deg, rgba(45, 176, 224, 1) 0%, rgba(96, 40, 168, 1) 100%);
 }
 
-.todo-app {
-  padding: 0 0 10% 0;
+.wrapper {
+  margin-top        : 20.6%;
+  padding-top       : 4%;
+  text-align        : center;
+  background        : rgb(226 243 241);
+  -webkit-box-shadow: 0 0 10px 5px #2cc9bc;
+  box-shadow        : 0 0 10px 5px #2cc9bc;
+  min-height        : 450px;
+}
+
+.links {
+  text-decoration: none !important;
+  color          : #6610f2;
+}
+
+.links:hover {
+  text-decoration: none !important;
+  color          : #6610f2;
 }

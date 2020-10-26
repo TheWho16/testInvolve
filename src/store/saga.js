@@ -1,6 +1,6 @@
 import { call, put, takeEvery, select } from 'redux-saga/effects'
 import InvolveServise from '../servise'
-import { LOAD_DATA, LOAD_OUTPUT_DATA, LOAD_OUTPUT_VALUE, addDataAction, addOutputDataAction, addOutputAction } from './actions'
+import { LOAD_DATA, setSuccess, addDataAction, setConvertedValue, CONVERTED } from './actions'
 
 const service = new InvolveServise()
 
@@ -16,26 +16,37 @@ export function* watchLoadData() {
 }
 
 
+// function* workerLoadOutput() {
+//     const state = yield select();
+//     const amount = state.reducerData.calculate.amount;
+//     console.log('amount', amount, "amount")
+//     if (amount !== null) {
+//         const data = yield call(service.getCanculate, state.reducerData.calculate)
+//         yield put(addOutputAction(data))
+//     }
+// }
+
 function* workerLoadOutput() {
+    yield put(setSuccess(true));
     const state = yield select();
-    const amount = state.reducerData.calculate.amount;
-    console.log('amount',amount,"amount")
-    if (amount !== null) {
-        const data = yield call(service.getCanculate, state.reducerData.calculate)
-        yield put(addOutputAction(data))
-    }
+    const { types, currency, value } = state.reducerData.calculate;
+    const resp = yield call(service.getCanculate, { base: types, amount: value, invoicePayMethod: currency.invoicePayMethod.value, withdrawPayMethod: currency.withdrawPayMethod.value });
+    yield put(setConvertedValue({ [types]: value, [types === `withdraw` ? types : `invoice`]: resp.amount }));
+    yield put(setSuccess(false));
+
 }
 
 export function* watchLoadOutput() {
-    yield takeEvery(LOAD_OUTPUT_VALUE, workerLoadOutput)
+    yield takeEvery(CONVERTED, workerLoadOutput)
 }
 
 
-function* workerLoadOutputData() {
-    const data = yield call(service.postMoney)
-    yield put(addOutputDataAction(data))
-}
+// function* workerLoadOutputData() {
+//     const data = yield call(service.postMoney)
+//     yield put(addOutputDataAction(data))
+// }
 
-export function* watchLoadOutputData() {
-    yield takeEvery(LOAD_OUTPUT_DATA, workerLoadOutputData)
-}
+// export function* watchLoadOutputData() {
+//     yield takeEvery(LOAD_OUTPUT_DATA, workerLoadOutputData)
+// }
+

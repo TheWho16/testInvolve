@@ -1,0 +1,26 @@
+.input-box {
+    display        : flex;
+    -ms-flex-pack  : center;
+    justify-content: space-evenly;
+    text-align     : center;
+    margin-top     : 6%;
+    margin-bottom  : 8%;
+}
+
+
+.btn-info,
+.btn-light {
+    width : 125px;
+    height: 48px;
+
+    border-radius: 4px;
+}
+
+.btn-info {
+    background: #58B4AE;
+}
+
+.btn-light {
+    background: #f5f5f5;
+    border    : 1px solid #58B4AE;
+}

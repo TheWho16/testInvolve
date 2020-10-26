@@ -1,12 +1,10 @@
 
 const initalState = {
     data: {},
-    inputValue: '',
-    outputValue: null,
-    invoice: {},
     withdraw: {},
     calculate: {},
     outPutData: {},
+    succses: true
 };
 
 const reducerData = (state = initalState, action) => {
@@ -18,37 +16,21 @@ const reducerData = (state = initalState, action) => {
                 data: action.payload
             }
 
-        case 'ADD_INPUT_VALUE':
-            return {
-                ...state,
-                inputValue: action.payload,
-            }
-
-        case 'ADD_OUTPUT_VALUE':
-            return {
-                ...state,
-                outputValue: action.payload.amount
-            }
         case 'CONVERTED':
-  
+            return {
+                ...state,
+                calculate: action.payload,
+                outPutData: action.payload
+            }
+        case 'SET_CONVERTED':
             return {
                 ...state,
                 calculate: action.payload
             }
-        case 'LOAD_OUTPUT_DATA':
+        case 'SET_SUCCESS':
             return {
                 ...state,
-                outPutData: action.payload
-            }
-        case 'ADD_INVOICE':
-            return {
-                ...state,
-                invoice: action.payload,
-            }
-        case 'ADD_WITHDRAW':
-            return {
-                ...state,
-                withdraw: action.payload,
+                succses: action.payload
             }
 
         default:

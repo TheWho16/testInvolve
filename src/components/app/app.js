@@ -1,45 +1,25 @@
-import React, { useEffect, useState, useSelector, useDispatch } from 'react';
-import InputChangeConteiner from '../inputChange';
-import Loader from '../loader';
-import { getConvertedValue, loadData } from '../../store/actions'
+import React, { Fragment } from 'react';
+import PayPage from '../pages/payPage';
+import SuccessPage from '../pages/successPage';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import './app.css';
+import DetailsPage from '../pages/detailsPage/detailsPage';
 
- const App = () => {
-  const dispatch = useDispatch()
-  const [buyCurrency, setBuyCurrency] = useState();
-  const [sellCurrency, setSellCurrency] = useState();
-  const { data } = useSelector((state) => state.reducerData);
-  const { invoice, withdraw } = useSelector((state) => state.reducerData.calculate);
-  useEffect(() => {
-    loadData()
-  }, []);
+const App = () => {
 
-
-  if (data === undefined) {
-    return <Loader />
-  }
-
-  const handleChange = (type, currency) => (e) => dispatch(getConvertedValue({ type, currency, value: e.target.value }));
 
   return (
-    <div className="wrapper">
+    <div className='wrapper'>
+      <Router>
+        <Switch>
+          <Route path='/' exact render={() => <PayPage />} />
+          <Route path='/details' exact render={() => <DetailsPage />} />
+          <Route path='/success' exact render={() => <SuccessPage />} />
+        </Switch>
 
-      <InputChangeConteiner
-        value={invoice}
-        select={setSellCurrency}
-        onChange={handleChange(`invoice`, sellCurrency)}
-        header='Sell'
-        data={data.invoice} />
-      <InputChangeConteiner
-        value={withdraw}
-        select={setBuyCurrency}
-        onChange={handleChange(`withdraw`, buyCurrency)}
-        header='Buy'
-        data={data.withdraw} />
+      </Router>
 
-      <div className="todo-app">
-      </div>
     </div>
   );
 
