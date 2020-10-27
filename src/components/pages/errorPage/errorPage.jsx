@@ -18,7 +18,7 @@ const ErrorPage = () => {
 
     return (
         <div className="bottom-panel d-flex success">
-            <img className='success-img' src={Vector} alt='vector' />
+            <img className='success-img' src={Vector} alt='error' />
             <AppHeader text={'Ooooops!'} />
             <p>Something bad has happened. Return to the main page</p>
             <Link className='links' to="/">
