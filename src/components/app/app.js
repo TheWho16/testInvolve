@@ -1,13 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PayPage from '../pages/payPage';
 import SuccessPage from '../pages/successPage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-import './app.css';
+import { useSelector } from 'react-redux'
 import DetailsPage from '../pages/detailsPage/detailsPage';
 
-const App = () => {
+import './app.css';
 
+const App = () => {
+  const { success } = useSelector((state) => state.reducerData);
 
   return (
     <div className='wrapper'>
@@ -15,11 +16,11 @@ const App = () => {
         <Switch>
           <Route path='/' exact render={() => <PayPage />} />
           <Route path='/details' exact render={() => <DetailsPage />} />
-          <Route path='/success' exact render={() => <SuccessPage />} />
+          <Route path='/success'>
+            {success ? <DetailsPage /> : <SuccessPage />}
+          </Route>
         </Switch>
-
       </Router>
-
     </div>
   );
 

@@ -8,6 +8,7 @@ body {
 
 .wrapper {
   margin-top        : 20.6%;
+  margin-bottom     : 10.6%;
   padding-top       : 4%;
   text-align        : center;
   background        : rgb(226 243 241);
@@ -24,4 +25,9 @@ body {
 .links:hover {
   text-decoration: none !important;
   color          : #ffffff;
+}
+
+.links-light{
+  text-decoration: none !important;
+  color          : #1b4249;
 }

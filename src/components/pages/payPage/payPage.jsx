@@ -2,8 +2,9 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import InputChange from '../../inputChange';
 import Loader from '../../loader';
-import { getConvertedValue, loadData } from '../../../store/actions'
+import { getConvertedValue, loadData, setSuccess } from '../../../store/actions'
 import { Link } from 'react-router-dom';
+import { notyInfo } from '../../noty-info/noty';
 
 import './style.css';
 
@@ -11,7 +12,6 @@ const PayPage = () => {
     const dispatch = useDispatch()
     const [notyI, setNotyI] = useState(true);
     const [notyII, setNotyII] = useState(true);
-
     const [buyCurrency, setBuyCurrency] = useState();
     const [sellCurrency, setSellCurrency] = useState();
     const { data, success } = useSelector((state) => state.reducerData);
@@ -20,19 +20,23 @@ const PayPage = () => {
         dispatch(loadData())
     }, []);
 
-
     if (data === undefined) {
         return <Loader />
-    }
-
-    const handleChange = (types, currency) => (e) => {
-
-        console.log(types, currency)
-        return dispatch(getConvertedValue({ types, currency, value: e.target.value }))
     };
 
-    const currency = { invoicePayMethod: sellCurrency, withdrawPayMethod: buyCurrency }
-    const noty = (notyI || notyII)
+    const handleChange = (types, currency) => (e) => {
+        return dispatch(getConvertedValue({ types, currency, value: e.target.value }));
+    };
+
+    const popUp = () => {
+        if (success === true) {
+            notyInfo('Enter your money transfer details')
+        };
+        dispatch(setSuccess(true));
+    };
+
+    const currency = { invoicePayMethod: sellCurrency, withdrawPayMethod: buyCurrency };
+    const noty = (notyI || notyII);
 
     return (
         <Fragment>
@@ -56,7 +60,10 @@ const PayPage = () => {
                     placeholder='Buy'
                     data={data.withdraw} />
             </div>
-            <button type="button" className="btn btn-info"><Link className='links' to={success ? '#' : '/details'} >Exchange</Link></button>
+            <Link className='links' to={success ? '#' : '/details'}>
+                <button type="button" onClick={popUp} className="btn btn-info">Exchange
+                 </button>
+            </Link>
         </Fragment>
     );
 };

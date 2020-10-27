@@ -29,21 +29,24 @@ export default class InvolveServise {
 
 
   postMoney = async (data = {}) => {
-    const response = await fetch(`${this._baseUrl}/bids`, {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache', 
-      credentials: 'same-origin', 
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      redirect: 'follow', 
-      referrerPolicy: 'no-referrer', 
-      body: JSON.stringify(data)
-    });
-    if (!response.ok) {
-      throw new Error(`Could not fetch`, `, received ${response.status}`)
+    try {
+      const response = await fetch(`${this._baseUrl}/bids`, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify(data)
+      });
+      return await response.json();
     }
-    return await response.json();
+    catch (error) {
+      let err = true
+      return err;
+    }
   }
 }

@@ -8,8 +8,6 @@ const LOAD_OUTPUT_DATA = 'LOAD_OUTPUT_DATA';
 const LOAD_DATA = 'LOAD_DATA';
 const CLEAR_CALCULATE = 'CLEAR_CALCULATE';
 
-
-
 const addDataAction = (data) => ({ type: ADD_DATA, payload: data });
 const addRespDataAction = (data) => ({ type: ADD_RESP_DATA, payload: data });
 const getConvertedValue = (data) => ({ type: CONVERTED, payload: data });
@@ -34,7 +32,6 @@ const loadOutputData = () => {
         type: LOAD_OUTPUT_DATA
     }
 }
-
 
 
 export {

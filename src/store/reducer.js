@@ -5,7 +5,7 @@ const initalState = {
     calculate: {},
     outPutData: {},
     success: true,
-    respData: undefined
+    respData: null
 };
 
 const reducerData = (state = initalState, action) => {

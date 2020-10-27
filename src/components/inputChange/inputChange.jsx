@@ -1,10 +1,9 @@
 import React from "react";
-import { notyInfo } from "../noty-info/noty";
 import Loader from '../loader'
 import Select from 'react-select'
+import AppHeader from "../app-header/app-header";
 
 import "./style.css";
-import AppHeader from "../app-header/app-header";
 
 const InputChange = (props) => {
 

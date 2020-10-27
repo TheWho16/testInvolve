@@ -11,9 +11,9 @@ let reducers = combineReducers({
 let sagaMiddelware = createSagaMiddelware();
 
 let store = createStore(reducers, compose(applyMiddleware(sagaMiddelware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
-sagaMiddelware.run(watchLoadData)
-sagaMiddelware.run(watchLoadOutput)
-sagaMiddelware.run(watchLoadOutputData)
+sagaMiddelware.run(watchLoadData);
+sagaMiddelware.run(watchLoadOutput);
+sagaMiddelware.run(watchLoadOutputData);
 
 window.store = store;
 
