@@ -7,10 +7,11 @@ import { Link } from 'react-router-dom';
 
 
 import './style.css';
+import { loadOutputData } from '../../../store/actions';
 
 const DetailsPage = () => {
     const dispatch = useDispatch()
-    const { outPutData } = useSelector((state) => state.reducerData);
+    const { outPutData, success } = useSelector((state) => state.reducerData);
     const { invoice, withdraw } = useSelector((state) => state.reducerData.calculate);
     const { value } = outPutData
     const { invoicePayMethod, withdrawPayMethod } = outPutData.currency
@@ -23,9 +24,12 @@ const DetailsPage = () => {
         }
 
     }
-    const sell = valTitle(invoice, value)
-    const buy = valTitle(withdraw, value)
+    const sell = valTitle(withdraw, value)
+    const buy = valTitle(invoice, value)
 
+    const sendData = () => {
+        dispatch(loadOutputData())
+    }
 
 
     return (
@@ -38,7 +42,7 @@ const DetailsPage = () => {
 
                 <div className='input-box'>
                     <Link to="/"><button type="button" className="btn btn-light">Cancel</button></Link>
-                    <Link to="/success"><button type="button" className="btn btn-info">Confirm</button></Link>
+                    <button type="button" onClick={sendData} className="btn btn-info"><Link className='links' to={success ? '#' : '/success'} >Confirm</Link></button>
 
                 </div>
             </div>

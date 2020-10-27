@@ -4,7 +4,8 @@ const initalState = {
     withdraw: {},
     calculate: {},
     outPutData: {},
-    succses: true
+    success: true,
+    respData: undefined
 };
 
 const reducerData = (state = initalState, action) => {
@@ -22,15 +23,28 @@ const reducerData = (state = initalState, action) => {
                 calculate: action.payload,
                 outPutData: action.payload
             }
+
         case 'SET_CONVERTED':
             return {
                 ...state,
                 calculate: action.payload
             }
+
+        case 'CLEAR_CALCULATE':
+            return {
+                ...state,
+                calculate: {}
+            }
+
         case 'SET_SUCCESS':
             return {
                 ...state,
-                succses: action.payload
+                success: action.payload
+            }
+        case 'ADD_RESP_DATA':
+            return {
+                ...state,
+                respData: action.payload
             }
 
         default:

@@ -1,6 +1,6 @@
 import { call, put, takeEvery, select } from 'redux-saga/effects'
 import InvolveServise from '../servise'
-import { LOAD_DATA, setSuccess, addDataAction, setConvertedValue, CONVERTED } from './actions'
+import { LOAD_DATA, setSuccess, addDataAction, setConvertedValue, CONVERTED, LOAD_OUTPUT_DATA, addRespDataAction } from './actions'
 
 const service = new InvolveServise()
 
@@ -41,12 +41,16 @@ export function* watchLoadOutput() {
 }
 
 
-// function* workerLoadOutputData() {
-//     const data = yield call(service.postMoney)
-//     yield put(addOutputDataAction(data))
-// }
+function* workerLoadOutputData() {
+    yield put(setSuccess(true));
+    const state = yield select();
+    const { types, currency, value } = state.reducerData.outPutData;
+    const data = yield call(service.postMoney, { base: types, amount: value, invoicePayMethod: currency.invoicePayMethod.value, withdrawPayMethod: currency.withdrawPayMethod.value })
+    yield put(addRespDataAction(data))
+    yield put(setSuccess(false));
+}
 
-// export function* watchLoadOutputData() {
-//     yield takeEvery(LOAD_OUTPUT_DATA, workerLoadOutputData)
-// }
+export function* watchLoadOutputData() {
+    yield takeEvery(LOAD_OUTPUT_DATA, workerLoadOutputData)
+}
 

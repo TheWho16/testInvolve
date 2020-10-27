@@ -14,7 +14,7 @@ const PayPage = () => {
 
     const [buyCurrency, setBuyCurrency] = useState();
     const [sellCurrency, setSellCurrency] = useState();
-    const { data, succses } = useSelector((state) => state.reducerData);
+    const { data, success } = useSelector((state) => state.reducerData);
     const { invoice, withdraw } = useSelector((state) => state.reducerData.calculate);
     useEffect(() => {
         dispatch(loadData())
@@ -56,7 +56,7 @@ const PayPage = () => {
                     placeholder='Buy'
                     data={data.withdraw} />
             </div>
-            <button type="button" className="btn btn-info"><Link className='links' to={succses ? '#' : '/details'} >Exchange</Link></button>
+            <button type="button" className="btn btn-info"><Link className='links' to={success ? '#' : '/details'} >Exchange</Link></button>
         </Fragment>
     );
 };
